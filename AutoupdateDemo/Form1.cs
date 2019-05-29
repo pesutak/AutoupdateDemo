@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AutoUpdaterDotNET;
 
 namespace AutoupdateDemo
 {
@@ -24,6 +25,19 @@ namespace AutoupdateDemo
             var apath = Assembly.GetEntryAssembly().Location;
             var ver = FileVersionInfo.GetVersionInfo(apath);
             Text = $"{ver.ProductName} {Assembly.GetEntryAssembly().GetName().Version.ToString()}";
+
+
+            System.Timers.Timer timer = new System.Timers.Timer
+            {
+                Interval = 5000,
+                SynchronizingObject = this
+            };
+            timer.Elapsed += delegate
+            {
+                AutoUpdater.Start("https://raw.githubusercontent.com/pesutak/AutoupdateDemo/master/AutoupdateDemo/update.xml");
+            };
+            timer.Start();
+            
         }
     }
 }
