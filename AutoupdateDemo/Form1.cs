@@ -34,7 +34,7 @@ namespace AutoupdateDemo
             };
             timer.Elapsed += delegate
             {
-                AutoUpdater.Start("https://raw.githubusercontent.com/pesutak/AutoupdateDemo/master/AutoupdateDemo/update.xml");
+                AutoUpdater.Start($"https://raw.githubusercontent.com/pesutak/AutoupdateDemo/master/AutoupdateDemo/update.xml?d={DateTime.Now}");
                
             };
             timer.Start();
