@@ -26,7 +26,7 @@ namespace AutoupdateDemo
             var ver = FileVersionInfo.GetVersionInfo(apath);
             Text = $"{ver.ProductName} {Assembly.GetEntryAssembly().GetName().Version.ToString()}";
 
-
+            AutoUpdater.Mandatory = true;
             System.Timers.Timer timer = new System.Timers.Timer
             {
                 Interval = 5000,
@@ -35,6 +35,7 @@ namespace AutoupdateDemo
             timer.Elapsed += delegate
             {
                 AutoUpdater.Start("https://raw.githubusercontent.com/pesutak/AutoupdateDemo/master/AutoupdateDemo/update.xml");
+               
             };
             timer.Start();
             
